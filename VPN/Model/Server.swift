@@ -5,7 +5,7 @@
 //  Created by Sergey on 17.04.2022.
 //
 
-import SwiftUI
+import Foundation
 
 //hardcode server
     struct HardcodeServer: Identifiable {

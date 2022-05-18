@@ -16,7 +16,7 @@
 		A512320328070491005A4267 /* VPNTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A512320228070491005A4267 /* VPNTests.swift */; };
 		A512320D28070491005A4267 /* VPNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A512320C28070491005A4267 /* VPNUITests.swift */; };
 		A512320F28070491005A4267 /* VPNUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A512320E28070491005A4267 /* VPNUITestsLaunchTests.swift */; };
-		A5123220280706CF005A4267 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = A512321F280706CF005A4267 /* Home.swift */; };
+		A5123220280706CF005A4267 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A512321F280706CF005A4267 /* HomeView.swift */; };
 		A58A2A5928159CD100C89B57 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A2A5828159CD100C89B57 /* SwiftUIView.swift */; };
 		A58A2AB2281A87FC00C89B57 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A2AB1281A87FC00C89B57 /* SideMenu.swift */; };
 		A58A2AB4281A882E00C89B57 /* RatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A2AB3281A882E00C89B57 /* RatesView.swift */; };
@@ -38,6 +38,7 @@
 		A5F43AEA281B0D9300FBABC0 /* MatrixThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F43AE9281B0D9300FBABC0 /* MatrixThemeView.swift */; };
 		A5F43AED281B142300FBABC0 /* Toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F43AEC281B142300FBABC0 /* Toggle.swift */; };
 		A5F43AEF281B241900FBABC0 /* matrix code nfi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F43AEE281B241900FBABC0 /* matrix code nfi.ttf */; };
+		A5F930CB2832F2BC00935715 /* VPNIKEv2Gamma.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F930CA2832F2BC00935715 /* VPNIKEv2Gamma.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +71,7 @@
 		A512320828070491005A4267 /* VPNUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VPNUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A512320C28070491005A4267 /* VPNUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNUITests.swift; sourceTree = "<group>"; };
 		A512320E28070491005A4267 /* VPNUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		A512321F280706CF005A4267 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		A512321F280706CF005A4267 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A58A2A5828159CD100C89B57 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		A58A2AB1281A87FC00C89B57 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		A58A2AB3281A882E00C89B57 /* RatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesView.swift; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 		A5F43AEC281B142300FBABC0 /* Toggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toggle.swift; sourceTree = "<group>"; };
 		A5F43AEE281B241900FBABC0 /* matrix code nfi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "matrix code nfi.ttf"; sourceTree = "<group>"; };
 		A5F43AF0281B243500FBABC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A5F930CA2832F2BC00935715 /* VPNIKEv2Gamma.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNIKEv2Gamma.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,8 +150,7 @@
 				A5F43AF0281B243500FBABC0 /* Info.plist */,
 				A59165902812D704009B57F4 /* VPN.entitlements */,
 				A512321C28070575005A4267 /* Model */,
-				A591656D280AF7C1009B57F4 /* Extensions & methods */,
-				A512321B2807055D005A4267 /* View */,
+				A512321B2807055D005A4267 /* Views */,
 				A51231EC2807048C005A4267 /* VPNApp.swift */,
 				A51231EE2807048C005A4267 /* ContentView.swift */,
 				A51231F028070490005A4267 /* Assets.xcassets */,
@@ -186,19 +187,20 @@
 			path = VPNUITests;
 			sourceTree = "<group>";
 		};
-		A512321B2807055D005A4267 /* View */ = {
+		A512321B2807055D005A4267 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A512321F280706CF005A4267 /* HomeView.swift */,
 				A5F43AF2281EAE8F00FBABC0 /* Themes */,
 				A5916578280DF63F009B57F4 /* Menu */,
-				A512321F280706CF005A4267 /* Home.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A512321C28070575005A4267 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A591656D280AF7C1009B57F4 /* Extensions & methods */,
 				A591658F2812D1ED009B57F4 /* Different IKEv2 models */,
 				A5916576280C83C7009B57F4 /* Server.swift */,
 				A59165872811A2E8009B57F4 /* KeychainService.swift */,
@@ -235,6 +237,7 @@
 				A591658B2811B4D7009B57F4 /* VPNIKEv2.swift */,
 				A591658D2812C860009B57F4 /* VPNManagerBeta.swift */,
 				A59165912813209C009B57F4 /* VPNManagerAlpha.swift */,
+				A5F930CA2832F2BC00935715 /* VPNIKEv2Gamma.swift */,
 				A59165892811A34B009B57F4 /* VPNManager.swift */,
 			);
 			path = "Different IKEv2 models";
@@ -398,7 +401,8 @@
 				A51231F628070490005A4267 /* Persistence.swift in Sources */,
 				A58A2AC6281ADC9C00C89B57 /* NavigationColor.swift in Sources */,
 				A58A2ABA281A885200C89B57 /* ProfileView.swift in Sources */,
-				A5123220280706CF005A4267 /* Home.swift in Sources */,
+				A5F930CB2832F2BC00935715 /* VPNIKEv2Gamma.swift in Sources */,
+				A5123220280706CF005A4267 /* HomeView.swift in Sources */,
 				A58A2AB4281A882E00C89B57 /* RatesView.swift in Sources */,
 				A591658A2811A34B009B57F4 /* VPNManager.swift in Sources */,
 				A58A2A5928159CD100C89B57 /* SwiftUIView.swift in Sources */,
@@ -576,7 +580,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"VPN/Preview Content\"";
-				DEVELOPMENT_TEAM = HAK4X77QFJ;
+				DEVELOPMENT_TEAM = 88YJ9659DP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VPN/Info.plist;
@@ -590,7 +594,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Sergey-Karavaev.VPN";
+				PRODUCT_BUNDLE_IDENTIFIER = "Sergey-Karavaev.VPN2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -607,7 +611,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"VPN/Preview Content\"";
-				DEVELOPMENT_TEAM = HAK4X77QFJ;
+				DEVELOPMENT_TEAM = 88YJ9659DP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VPN/Info.plist;
@@ -621,7 +625,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Sergey-Karavaev.VPN";
+				PRODUCT_BUNDLE_IDENTIFIER = "Sergey-Karavaev.VPN2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

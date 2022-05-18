@@ -10,7 +10,7 @@ import NetworkExtension
 
 class VPN {
 
- let vpnManager = NEVPNManager.shared()
+ let vpnManager2 = NEVPNManager.shared()
 
 private var vpnLoadHandler: (Error?) -> Void { return
         { (error:Error?) in
@@ -30,10 +30,10 @@ private var vpnLoadHandler: (Error?) -> Void { return
             p.passwordReference = kcs.load(key: "VPNPASSWORD")
             p.useExtendedAuthentication = true
             p.disconnectOnSleep = false
-            self.vpnManager.protocolConfiguration = p
-            self.vpnManager.localizedDescription = "Contensi2"
-            self.vpnManager.isEnabled = true
-            self.vpnManager.saveToPreferences(completionHandler: self.vpnSaveHandler)
+            self.vpnManager2.protocolConfiguration = p
+            self.vpnManager2.localizedDescription = "Contensi2"
+            self.vpnManager2.isEnabled = true
+            self.vpnManager2.saveToPreferences(completionHandler: self.vpnSaveHandler)
     } }
 
 private var vpnSaveHandler: (Error?) -> Void { return
@@ -43,7 +43,7 @@ private var vpnSaveHandler: (Error?) -> Void { return
             return
         } else {
             do {
-                try self.vpnManager.connection.startVPNTunnel()
+                try self.vpnManager2.connection.startVPNTunnel()
             } catch let error {
                 print("Error starting VPN Connection \(error.localizedDescription)")
                 }
@@ -55,12 +55,12 @@ private var vpnSaveHandler: (Error?) -> Void { return
 public func connectVPN() {
         //For no known reason the process of saving/loading the VPN configurations fails.On the 2nd time it works
       
-        self.vpnManager.loadFromPreferences(completionHandler: self.vpnLoadHandler)
+        self.vpnManager2.loadFromPreferences(completionHandler: self.vpnLoadHandler)
         }
     
 
 public func disconnectVPN() ->Void {
-        vpnManager.connection.stopVPNTunnel()
+        vpnManager2.connection.stopVPNTunnel()
 }
 
 }

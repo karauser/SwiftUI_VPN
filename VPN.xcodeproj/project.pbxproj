@@ -39,6 +39,9 @@
 		A5F43AED281B142300FBABC0 /* Toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F43AEC281B142300FBABC0 /* Toggle.swift */; };
 		A5F43AEF281B241900FBABC0 /* matrix code nfi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F43AEE281B241900FBABC0 /* matrix code nfi.ttf */; };
 		A5F930CB2832F2BC00935715 /* VPNIKEv2Gamma.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F930CA2832F2BC00935715 /* VPNIKEv2Gamma.swift */; };
+		A5F930FC28365DFD00935715 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A5F930FB28365DFD00935715 /* FirebaseAuth */; };
+		A5F930FE28365F5900935715 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5F930FD28365F5800935715 /* GoogleService-Info.plist */; };
+		A5F93102283669EB00935715 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F93101283669EB00935715 /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +99,8 @@
 		A5F43AEE281B241900FBABC0 /* matrix code nfi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "matrix code nfi.ttf"; sourceTree = "<group>"; };
 		A5F43AF0281B243500FBABC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A5F930CA2832F2BC00935715 /* VPNIKEv2Gamma.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNIKEv2Gamma.swift; sourceTree = "<group>"; };
+		A5F930FD28365F5800935715 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A5F93101283669EB00935715 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5F930FC28365DFD00935715 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +153,7 @@
 		A51231EB2807048C005A4267 /* VPN */ = {
 			isa = PBXGroup;
 			children = (
+				A5F930FD28365F5800935715 /* GoogleService-Info.plist */,
 				A5F43AF0281B243500FBABC0 /* Info.plist */,
 				A59165902812D704009B57F4 /* VPN.entitlements */,
 				A512321C28070575005A4267 /* Model */,
@@ -200,6 +207,7 @@
 		A512321C28070575005A4267 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A5F93101283669EB00935715 /* LoginViewModel.swift */,
 				A591656D280AF7C1009B57F4 /* Extensions & methods */,
 				A591658F2812D1ED009B57F4 /* Different IKEv2 models */,
 				A5916576280C83C7009B57F4 /* Server.swift */,
@@ -278,6 +286,9 @@
 			dependencies = (
 			);
 			name = VPN;
+			packageProductDependencies = (
+				A5F930FB28365DFD00935715 /* FirebaseAuth */,
+			);
 			productName = VPN;
 			productReference = A51231E92807048C005A4267 /* VPN.app */;
 			productType = "com.apple.product-type.application";
@@ -350,6 +361,9 @@
 				Base,
 			);
 			mainGroup = A51231E02807048C005A4267;
+			packageReferences = (
+				A5F930FA28365DFC00935715 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = A51231EA2807048C005A4267 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -369,6 +383,7 @@
 				A5F43AEF281B241900FBABC0 /* matrix code nfi.ttf in Resources */,
 				A51231F428070490005A4267 /* Preview Assets.xcassets in Resources */,
 				A51231F128070490005A4267 /* Assets.xcassets in Resources */,
+				A5F930FE28365F5900935715 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +427,7 @@
 				A5916571280B030A009B57F4 /* Colors.swift in Sources */,
 				A58A2AB8281A884500C89B57 /* AuthorizationView.swift in Sources */,
 				A58A2AB6281A883A00C89B57 /* UserAgreementView.swift in Sources */,
+				A5F93102283669EB00935715 /* LoginViewModel.swift in Sources */,
 				A51231EF2807048C005A4267 /* ContentView.swift in Sources */,
 				A59165882811A2E8009B57F4 /* KeychainService.swift in Sources */,
 				A591656F280AF7E6009B57F4 /* Animation.swift in Sources */,
@@ -584,6 +600,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VPN/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -615,6 +632,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VPN/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -749,6 +767,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A5F930FA28365DFC00935715 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A5F930FB28365DFD00935715 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5F930FA28365DFC00935715 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A51231F728070490005A4267 /* VPN.xcdatamodeld */ = {

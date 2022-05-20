@@ -11,6 +11,8 @@ struct SideMenu: View {
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var matrixThemeToggle: MainModel
     @Binding var showMenu: Bool
+    //Log status
+    @AppStorage("log_status") var logStatus = false
     
     var body: some View {
         
@@ -19,28 +21,28 @@ struct SideMenu: View {
             VStack(alignment: .leading, spacing: 15) {
                 
                
-                Image(matrixThemeToggle.matrixThemeToggle ? "morpheus" : "user")
+                Image(matrixThemeToggle.matrixThemeToggle ? "morpheus" : (logStatus ? "andrey" : "user"))
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 65, height: 65)
                     .clipShape(Circle())
                 
                 
-                Text("$username")
+                Text(logStatus ? "Andrey" : "Guest")
                     .font(.title2.bold())
                 
                 HStack(spacing: 12) {
-                    Button {
-                    } label: {
-                        Label {
-                            Text("минус +")
-                        } icon: {
-                            Text("Тариф:")
-                                .fontWeight(.bold)
-                        }
+                    
+                    Label {
+                        Text(logStatus ? "Плюс" : "минус +")
+                    } icon: {
+                        Text("Тариф:")
+                            .fontWeight(.bold)
+                    }
+
                     }
                 
-                }
+            
                 .foregroundColor(.primary)
             }
             .padding(.horizontal)
@@ -67,7 +69,7 @@ struct SideMenu: View {
 //                        })
 //                                       
                                        
-                                     NavigationLink(destination: ProfileView(),  label: {
+                        if logStatus {          NavigationLink(destination: ProfileView(),  label: {
                             HStack(spacing: 14) {
                                 Image(systemName: "newspaper.fill")
                                     .resizable()
@@ -79,7 +81,7 @@ struct SideMenu: View {
                                     .foregroundColor(.primary)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                         })
-                        
+                        }
                         NavigationLink(destination: RatesView(),  label: {
                             HStack(spacing: 14) {
                                 Image(systemName: "rublesign.circle")
@@ -104,6 +106,7 @@ struct SideMenu: View {
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 22, height: 22)
                                 Text("Пользовательское соглашение")
+                                    .multilineTextAlignment(.leading)
                             }
                                     .foregroundColor(.primary)
                                     .frame(maxWidth: .infinity, alignment: .leading)

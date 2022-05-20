@@ -11,7 +11,9 @@ struct RatesView: View {
     var body: some View {
         ZStack {
             
-        
+        Image("rates")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
         }
         .navigationTitle("Тарифы")
         .navigationBarTitleDisplayMode(.large)

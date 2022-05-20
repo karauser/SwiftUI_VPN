@@ -53,6 +53,7 @@ struct HomeView: View {
                     .padding()
                     
                 }.opacity(!showMenu ? 1 : 0)
+                
                 Spacer()
                 
                 Button {isWebViewShow.toggle()} label: {
@@ -260,7 +261,7 @@ struct HomeView: View {
             )
             //Safe area won't show on preview
             //Show only 50 pixels of height
-            .offset(y: isServerHasBeenChanged ? 0 : (getRect().height / 2.5) - (50 + getSafeArea().bottom))
+            .offset(y: isServerHasBeenChanged ? 0 : (getRect().height / 2.5) - (getRect().height < 750 ? 120 : 60 + getSafeArea().bottom))
         }
 
 

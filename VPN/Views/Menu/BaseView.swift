@@ -15,6 +15,7 @@ struct BaseView: View {
 //Create gesture offset
     @GestureState var gestureOffset: CGFloat = 0
     
+    
     var body: some View {
         
         let sideBarWidth = getRect().width - 90
@@ -40,6 +41,7 @@ struct BaseView: View {
                             .onTapGesture {
                                 withAnimation {
                                     showMenu.toggle()
+                                    offset = 0
                                 }
                             }
                 )

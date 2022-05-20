@@ -28,7 +28,7 @@ struct SideMenu: View {
                     .clipShape(Circle())
                 
                 
-                Text(logStatus ? "Andrey" : "Guest")
+                Text(logStatus ? "Андрей" : "Guest")
                     .font(.title2.bold())
                 
                 HStack(spacing: 12) {

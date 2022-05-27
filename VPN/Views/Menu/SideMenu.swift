@@ -13,6 +13,7 @@ struct SideMenu: View {
     @Binding var showMenu: Bool
     //Log status
     @AppStorage("log_status") var logStatus = false
+    @AppStorage("current_rate") var currentRate = MainModel.Rates.promo.rawValue
     
     var body: some View {
         
@@ -34,7 +35,7 @@ struct SideMenu: View {
                 HStack(spacing: 12) {
                     
                     Label {
-                        Text(logStatus ? "Плюс" : "минус +")
+                        Text(logStatus ? currentRate : "Промо")
                     } icon: {
                         Text("Тариф:")
                             .fontWeight(.bold)
@@ -113,9 +114,7 @@ struct SideMenu: View {
                         })
                         
                         Toggle("Matrix Theme", isOn: $matrixThemeToggle.matrixThemeToggle)
-                        
-                        
-
+       
                     }
                         
                     .padding()

@@ -10,13 +10,15 @@ import Firebase
 
 struct ProfileView: View {
     
+    //MARK: rate properties
+    @AppStorage("current_rate") var currentRate = ""
     //MARK: faceID properties
     @AppStorage("use_face_id") var useFaceID = false
     @AppStorage("use_face_email") var faceIDEmail = ""
     @AppStorage("use_face_password") var FaceIDPassword = ""
-    
     //Log status
     @AppStorage("log_status") var logStatus: Bool = false
+    
     var body: some View {
         
         ScrollView {
@@ -32,10 +34,15 @@ struct ProfileView: View {
                 
                 Text("Андрей")
                     .font(.title2.bold())
-                Image("plusrate")
+                if currentRate == MainModel.Rates.standart.rawValue {
+                Image("rateStandart")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                
+                } else if currentRate == MainModel.Rates.plus.rawValue {
+                    Image("ratePlus")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                }
                 Button {
                     try? Auth.auth().signOut()
                     logStatus = false

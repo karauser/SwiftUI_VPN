@@ -14,6 +14,8 @@ class LoginViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""
     
+    
+  
     //MARK: faceID properties
     @AppStorage("use_face_id") var useFaceID = false
     @AppStorage("use_face_email") var faceIDEmail = ""

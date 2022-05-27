@@ -11,6 +11,8 @@ import WebKit
 
 struct HomeView: View {
    
+    
+    
     @Binding var showMenu: Bool
     @EnvironmentObject var matrixThemeToggle: MainModel
     @State var selectedTab = "Home"
@@ -29,7 +31,9 @@ struct HomeView: View {
     
     var body: some View {
         
+    
         VStack {
+            
             HStack {
                 Button {
                 } label: {
@@ -84,9 +88,7 @@ struct HomeView: View {
                     )
                     .onTapGesture {
                         self.isConnected.toggle()
-                        
-                        VPNIKEv2Setup.connectVPN()
-                        
+//                        VPNIKEv2Setup.connectVPN() connect to IKEv2 server
                     }
         }
             // Frame
@@ -101,7 +103,8 @@ struct HomeView: View {
             .padding(.top, getRect().height / 4)
     }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .background((matrixThemeToggle.matrixThemeToggle && !showMenu && isConnected) ? MatrixRainView() : nil)
+        
+            .background((matrixThemeToggle.matrixThemeToggle && !showMenu && isConnected) ? matrixRain() : nil)
             .background(
             LinearGradient(colors: [
                 .black, .black
@@ -174,6 +177,12 @@ struct HomeView: View {
                 }
                 
             }
+            
+            .background(
+            
+                Color(.white).opacity(isServerHasBeenChanged ? 0.07 : 0)
+                    .clipShape(CustomCorners(radius: 90, corners: [.topLeft,.topRight, .bottomRight, .bottomLeft]))
+            )
             .frame(height: 50)
             .padding(.horizontal)
             
@@ -253,7 +262,7 @@ struct HomeView: View {
             .padding()
             .padding(.top, 10)
             .frame(maxWidth: .infinity)
-            .frame(height: getRect().height / 2.5, alignment: .top)
+            .frame(height: getRect().height / 1.5, alignment: .top)
             .background(
             
                 Color(.black)
@@ -261,9 +270,22 @@ struct HomeView: View {
             )
             //Safe area won't show on preview
             //Show only 50 pixels of height
-            .offset(y: isServerHasBeenChanged ? 0 : (getRect().height / 2.5) - (getRect().height < 750 ? 120 : 60 + getSafeArea().bottom))
+            .offset(y: isServerHasBeenChanged ? 0 : (getRect().height / 1.5) - (getRect().height < 750 ? 120 : 60 + getSafeArea().bottom))
         }
+    func matrixRain() -> some View {
+    GeometryReader { proxy in
+        let size = proxy.size
+        
+        HStack(spacing: 15) {
+          
+                ForEach(1...(Int(size.width) / 25), id: \.self) {_ in
+                                    MatrixRainCharacters(size: size)
+            }
 
+        }
+       
+    }
+    }
 
 struct Pulser: View {
 
@@ -314,9 +336,7 @@ struct WebView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        
-        
-        
+ 
     }
 }
 

@@ -7,22 +7,25 @@
 
 import SwiftUI
 
+
+
 //MARK: Make random Characters
 
 let constant = "bchfgdyruwtqradxcnbmhofudheopgjfhu57dh3093hncjuafwouofuaevfwbuvuewpufvupanupvwaufopviufsuiovgygquip[qni[vpuwpneuiovugyioueyqwuenuvpqunwrupuvuqnuwr'eiv'iqir[iw[inrin329qu5r90q3475894nq3986tvq389bv47590v3729qn83-nv87093   8n2-57897v09q7309v57n302v707n0v5n72n7qv5nn2737nv85-8n73-58v-[382-v87-28 q8v-5283[v-982-vq58239-7v5023"
 
 struct MatrixRainView: View {
     
-  
     var body: some View {
+        
         GeometryReader { proxy in
             let size = proxy.size
             
             HStack(spacing: 15) {
-                ForEach(1...(Int(size.width) / 25), id: \.self) {_ in
-                    MatrixRainCharacters(size: size)
+              
+                    ForEach(1...(Int(size.width) / 25), id: \.self) {_ in
+                                        MatrixRainCharacters(size: size)
                 }
-                
+
             }
            
         }
@@ -37,8 +40,9 @@ struct MatrixRainCharacters: View {
     @State var random = 0
     var body: some View {
         //Random Height
+       
         let randomHeight: CGFloat = .random(in: ((size.height / 2...size.height)))
-                                                 
+      
         VStack {
             
             //MARK: Iterating String
@@ -54,6 +58,7 @@ struct MatrixRainCharacters: View {
                 
             }
         }
+        
         .mask(alignment: .top) {
             Rectangle()
                 .fill(
@@ -68,16 +73,22 @@ struct MatrixRainCharacters: View {
             //Make animation(slow down linear)
             //Make loop without reverse animation
             //Random delay
-            withAnimation(.linear(duration: 5).delay(.random(in: 0...2)).repeatForever(autoreverses: false)) {
-                startAnimation = true
-            }
+//            DispatchQueue.main.async {
+                withAnimation(.linear(duration: 5).delay(.random(in: 0...2)).repeatForever(autoreverses: false)) {
+                    startAnimation = true
+                }
+//            }
+          
         }
         .onReceive(Timer.publish(every: 0, on: .main, in: .common).autoconnect()) { _ in
             random = Int.random(in: 0..<constant.count)
         }
     }
     
+    
+    
 //    Changing characters by random by timer
+    
     func getRandomIndex(index: Int) -> Int {
         // avoid out bound range index
         let max = constant.count - 1

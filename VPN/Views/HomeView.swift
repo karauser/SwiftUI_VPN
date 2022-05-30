@@ -10,12 +10,11 @@ import UIKit
 import WebKit
 
 struct HomeView: View {
-   
-    
-    
+
     @Binding var showMenu: Bool
-    @EnvironmentObject var matrixThemeToggle: MainModel
-    @State var selectedTab = "Home"
+    @Binding var gestureStatus: Bool
+    @EnvironmentObject var model: MainModel
+
     @State private var animationAmount = 2.0
     @State private var currentServer: HardcodeServer = servers.first!
     @State var isWebViewShow           = false
@@ -27,13 +26,11 @@ struct HomeView: View {
     private let connectedButtonColor: RadialGradient       = .connectedButtonColor
     private let disconnectedButtonColor: RadialGradient    = .disconnectedButtonColor
     private let connectedMatrixButtonColor: RadialGradient = .connectedMatrixButtonColor
-    private let urlString: String = "https://ru.wikipedia.org/wiki/VPN"
+ 
     
     var body: some View {
-        
-    
+
         VStack {
-            
             HStack {
                 Button {
                 } label: {
@@ -41,21 +38,16 @@ struct HomeView: View {
                     Rectangle()
                             .frame(width: 30, height: 2.7)
                         .cornerRadius(4)
-                       
                         .rotationEffect(
                         .degrees(isRotateTop ? 12 : 0),
                         anchor: .leading)
-                
                     Rectangle()
                             .frame(width: 30, height: 2.5)
                         .cornerRadius(4)
-                        
-                        
                     }.onTapGesture {
                         withAnimation { showMenu.toggle() }
                     }
                     .padding()
-                    
                 }.opacity(!showMenu ? 1 : 0)
                 
                 Spacer()
@@ -66,26 +58,19 @@ struct HomeView: View {
                         .frame(width: 60.0, height: 9.0)
                         .font(.title2)
                         .padding(12)
-                        
-                            .sheet(isPresented: $isWebViewShow) {
-                                WebView(url: URL(string: urlString)!)
-                            }
-                        
+                        .sheet(isPresented: $isWebViewShow) { WebView(url: URL(string: model.urlString)!) }
                 }.padding()
             }.opacity(!showMenu ? 1 : 0)
-            
             .foregroundColor(.white)
+            
             // PowerButton inizialize
             Button {
-                
             } label: {
                 Image(systemName: "power")
                     .font(.system(size: 45, weight: .regular))
                     .foregroundColor(isConnected ? .white : .gray)
                     .clipShape(Circle())
-                    .overlay(
-                        (!showMenu && isConnected) ? Pulser() : nil
-                    )
+                    .overlay((!showMenu && isConnected && !gestureStatus) ? Pulser() : nil)
                     .onTapGesture {
                         self.isConnected.toggle()
 //                        VPNIKEv2Setup.connectVPN() connect to IKEv2 server
@@ -97,14 +82,13 @@ struct HomeView: View {
             ZStack {
                 Circle()
                     .fill(
-                        isConnected && matrixThemeToggle.matrixThemeToggle ? connectedMatrixButtonColor : isConnected ? connectedButtonColor : disconnectedButtonColor
+                        isConnected && model.matrixThemeToggle ? connectedMatrixButtonColor : isConnected ? connectedButtonColor : disconnectedButtonColor
                     )
 })
             .padding(.top, getRect().height / 4)
     }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        
-            .background((matrixThemeToggle.matrixThemeToggle && !showMenu && isConnected) ? matrixRain() : nil)
+            .background((model.matrixThemeToggle && !showMenu && isConnected) ? matrixRain() : nil)
             .background(
             LinearGradient(colors: [
                 .black, .black
@@ -119,11 +103,8 @@ struct HomeView: View {
                     withAnimation {
                         isServerHasBeenChanged.toggle()
                     }
-                }
-            )
-            .overlay(BottomSheetBeta(),
-                     alignment: .bottom
-            )
+                })
+            .overlay(BottomSheetBeta(), alignment: .bottom)
             .ignoresSafeArea(.container, edges: .bottom)
             .preferredColorScheme(.dark)
     }
@@ -135,11 +116,8 @@ struct HomeView: View {
     func BottomSheetBeta() -> some View {
             
         VStack(spacing: 0) {
-                
                 //Current server
-                
             HStack {
-                
                 Image(currentServer.flag)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -169,7 +147,6 @@ struct HomeView: View {
                         .fontWeight(.semibold)
                         .frame(width: 110, height: 45)
                         .background(
-                            
                             RoundedRectangle(cornerRadius: 10)
                                 .strokeBorder(.white.opacity(0.25), lineWidth: 2)
                         )
@@ -179,7 +156,6 @@ struct HomeView: View {
             }
             
             .background(
-            
                 Color(.white).opacity(isServerHasBeenChanged ? 0.07 : 0)
                     .clipShape(CustomCorners(radius: 90, corners: [.topLeft,.topRight, .bottomRight, .bottomLeft]))
             )
@@ -210,7 +186,6 @@ struct HomeView: View {
                                         Text(server.name)
                                             .font(.caption2)
                                             .fontWeight(.semibold)
-                                        
                                     }
                                     
                                     Label {
@@ -221,8 +196,6 @@ struct HomeView: View {
                                     .foregroundColor(.green)
                                     .font(.caption2)
                                 }
-                                
-                                
                                 Spacer(minLength: 10)
                                 
                                 //Change server button
@@ -284,7 +257,7 @@ struct HomeView: View {
 
         }
        
-    }
+       }
     }
 
 struct Pulser: View {
@@ -336,7 +309,7 @@ struct WebView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
- 
+ //required
     }
 }
 

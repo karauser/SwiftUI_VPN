@@ -14,7 +14,7 @@ struct BaseView: View {
     @State var lastStoredOffset: CGFloat     = 0
 //Create gesture offset
     @GestureState var gestureOffset: CGFloat = 0
-    
+    @State var gestureStatus = false
     
     var body: some View {
         
@@ -27,7 +27,7 @@ struct BaseView: View {
                 SideMenu(showMenu: $showMenu)
                 //Create main tabview
                 VStack(spacing: 0) {
-                        HomeView(showMenu: $showMenu)
+                    HomeView(showMenu: $showMenu, gestureStatus: $gestureStatus)
                             .navigationBarTitleDisplayMode(.inline)
                             .navigationBarHidden(true)
                 }
@@ -42,6 +42,7 @@ struct BaseView: View {
                                 withAnimation {
                                     showMenu.toggle()
                                     offset = 0
+                                    gestureStatus = false
                                 }
                             }
                 )
@@ -55,8 +56,13 @@ struct BaseView: View {
             DragGesture()
                 .updating($gestureOffset, body: { value, out, _ in
                     out = value.translation.width
+                    gestureStatus = true
                 })
                 .onEnded(onEndChangeGesture(value:))
+                .onEnded {_ in 
+                    
+                gestureStatus = false
+                                   }
             )
           //Navigation bar without title
           //Hiding navigation bar
@@ -67,21 +73,27 @@ struct BaseView: View {
         .onChange(of: showMenu) { newValue in
             if showMenu && offset == 0 {
                 offset = sideBarWidth
+                
             }
             if !showMenu && offset == sideBarWidth {
                 offset = 0
                 lastStoredOffset = 0
+                
             }
         }
         .onChange(of: gestureOffset) { newValue in
             onGestureChange()
+            
         }
     }
     
     func onGestureChange() {
+        
         let sideBarWidth = getRect().width - 90
         
         offset = (gestureOffset != 0) ? (gestureOffset + lastStoredOffset < sideBarWidth ? gestureOffset + lastStoredOffset: offset) : offset
+        
+       
     }
     func onEndChangeGesture(value: DragGesture.Value) {
         let sideBarWidth = getRect().width - 90
@@ -90,6 +102,7 @@ struct BaseView: View {
         withAnimation {
             //Check translation
             if translation > 0 {
+                
                 if translation > (sideBarWidth / 4) {
                     //show menu
                     offset = sideBarWidth
@@ -117,9 +130,12 @@ struct BaseView: View {
             }
             }
         lastStoredOffset = offset
-    }
         
+    }
+    
 }
+
+
 
 struct BaseView_Previews: PreviewProvider {
     static var previews: some View {
